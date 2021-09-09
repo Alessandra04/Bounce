@@ -32,6 +32,7 @@ function draw() {
 
   // teken een cirkel
   ellipse(x,y,80,80);
+  
 
   // positie
   x = x + speedX;
@@ -42,6 +43,16 @@ function draw() {
   }
 
   if (y === 0) {
-    
+    speedY = speedY *- 1;
   }
+
+  if (x === 1280) {
+    speedX = speedX *- 1;
+  }
+
+  if (x === 0) {
+    speedX = speedX *- 1;
+  }
+
+  
 }
