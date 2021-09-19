@@ -1,8 +1,5 @@
-var x = 50;
-var y = 50;
-var speedX = 2;
-var speedY = 5;
-
+// globale variabelen
+var ballen = [];
 
 /**
  * setup
@@ -13,8 +10,21 @@ function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
 
-  // Kleur de achtergrond blauw, zodat je het kunt zien
-  background('blue');
+  for (var i = 0; i < 25; i++) {
+    var randomx = random(50, 1230);
+    var randomy = random(50, 670);
+    var randomSpeedX = random (-5, 5);
+    var randomSpeedY = random (-5, 5);
+
+    var bal = new Bal(randomx, randomy, randomSpeedX, randomSpeedY);
+
+    ballen.push(bal);
+  }
+
+  var superbal = new Superbal(400, 300, 10, 10);
+  ballen.push(superbal); 
+
+
 }
 
 
@@ -24,35 +34,11 @@ function setup() {
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
  */
 function draw() {
-  // achtergrond
+  // Kleur de achtergrond blauw, zodat je het kunt zien
   background('blue');
 
-  // stel vulkleur in
-  fill(100, 100, 255);
-
-  // teken een cirkel
-  ellipse(x,y,80,80);
-  
-
-  // positie
-  x = x + speedX;
-  y = y + speedY;
-
-  if (y === 720) {
-    speedY = speedY *- 1;
+  for(var i = 0; i < ballen.length; i++) {
+    ballen[i].show();
+    ballen[i].update();
   }
-
-  if (y === 0) {
-    speedY = speedY *- 1;
-  }
-
-  if (x === 1280) {
-    speedX = speedX *- 1;
-  }
-
-  if (x === 0) {
-    speedX = speedX *- 1;
-  }
-
-  
 }
